@@ -19,6 +19,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+  list-style: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -43,6 +44,10 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+button{
+  border:none;
 }
 
 /* 여기서부터 찐코딩 */
@@ -166,4 +171,69 @@ footer {
 
 .footer{
   cursor:pointer;
+}
+
+/* Card */
+.card_box{
+  font-size:16px;
+  width:264px;
+}
+.img_wrap{
+  position: relative;
+}
+
+.icon_bookmark{
+  position: absolute;
+  bottom: 12px;
+  right:12px;
+  width:24px;
+  height: 24px;
+  cursor:pointer;
+}
+
+.bookmark_off{
+  background: url(./bookmark_off.png) no-repeat center;
+  background-size:cover;
+}
+
+.bookmark_on{
+  background: url(./bookmark_on.png)no-repeat center;
+  background-size:cover;
+}
+
+
+.card_titles{
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_img{
+  background-size: cover;
+  width:100%;
+  height:210px;
+  position: relative;
+  border-radius:12px;
+}
+
+.card_details{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+/* Main Page*/
+.main_section{
+  padding:104px 0 0 76px;
+}
+
+h2{
+  font-weight: 600;
+  font-size:24px;
+  margin-bottom:12px;
+}
+
+.cardlist_wrap{
+  display:flex;
+  justify-content: space-between;
 }
