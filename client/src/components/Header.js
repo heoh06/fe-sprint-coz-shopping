@@ -16,7 +16,7 @@ function Header () {
             <div className='menu'>
                 <div className='menu_icon' onClick={toggleMenu}></div>
                 <ul 
-                className={click ? 'menu_list hide' : 'menu_list'}
+                className={click ? 'menu_list' : 'menu_list hide'}
                 >
                     <li>오하은님, 안녕하세요!</li>
                     <li>상품리스트 페이지</li>
