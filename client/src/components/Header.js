@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import {useState} from 'react';
 
 function Header () {
-    const [click,setClick] = useState(false);
+    const [open,isOpen] = useState(false);
     function toggleMenu(){
-        setClick(click => !click)
+        isOpen(open => !open)
     }
 
     return(
@@ -16,7 +16,7 @@ function Header () {
             <div className='menu'>
                 <div className='menu_icon' onClick={toggleMenu}></div>
                 <ul 
-                className={click ? 'menu_list' : 'menu_list hide'}
+                className={open? 'menu_list' : 'menu_list hide'}
                 >
                     <li>오하은님, 안녕하세요!</li>
                     <li>상품리스트 페이지</li>
