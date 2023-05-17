@@ -5,10 +5,7 @@ function ItemList({data}){
 
     return(
         <ul className='cardlist_wrap'>
-            <Card data={data}/>
-            <Card data={data}/>
-            <Card data={data}/>
-            <Card data={data}/>
+            {data.map(()=><Card data={data}/>)}
         </ul>
     )
 }

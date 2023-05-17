@@ -1,22 +1,27 @@
 import React from 'react';
 import MainItemList from '../components/MainItemList'
 import MainBookmarkList from '../components/MainBookmarkList'
-import { useState, useEffect } from 'react';
+import { useEffect, useState} from 'react';
 import axios from 'axios';
 
 function MainPage(){
     const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async() => {
+        const res = await axios.get('http://cozshopping.codestates-seb.link/api/v1/products',{
+            params:{
+                count:4
+            }
+        });
+        console.log(res)
+        return res.data;
+        }	
     
-useEffect(() => {
-    const fetchData = async() => {
-    const res = await axios.get('http://cozshopping.codestates-seb.link/api/v1/products');
-    console.log(res)
-    return res.data;
-    }   
+        fetchData().then(res => setData(res));
+    }, []);
 
-    fetchData().then(res => setData(res));
-}, []);
-
+    
     return(
         <>
         <section className='main_section_product'>
