@@ -1,43 +1,59 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
-function Card({data}) {
-    const [bookMarkIcon, setbookMarkIcon] = useState(false);
+function Card({itemInfo}) {
+    console.log(itemInfo)
+    const [isBookmarked, setBooked] = useState(false);
+
 	function toggleBookmark(){
-        setbookMarkIcon(bookMarkIcon => !bookMarkIcon)
+        setBooked(isBookmarked => !isBookmarked)
     }
 
-    const [bookmark, setBookmark] = useState([]);
-    const saveBookmark = (obj) => {
-        const itemIdx = bookmark.findIndex((item)=>item.id===obj.id);
-        let updateBookmark;
-        if (itemIdx === -1){
-            updateBookmark = [obj,...bookmark]
-        } else{
-            updateBookmark = bookmark.filter((item)=>item.id===obj.id)
+
+    useEffect(() => {
+        function saveBookmarkStateToLocalStorage() {
+            const localItems = localStorage.getItem("items");
+            const parsedItems = JSON.parse(localItems);
+            const updatedItems = parsedItems.map((item) =>
+            item.id === itemInfo.id ? { ...itemInfo, isBookmarked:true} : item
+            );
+            localStorage.setItem("updatedItems", JSON.stringify(updatedItems));
         }
-        setBookmark(updateBookmark);
-        localStorage.setItem("bookmark", JSON.stringify(updateBookmark))
-    }
+        function removeBookmarkStateFromLocalStorage() {
+            const localItems = localStorage.getItem("items");
+            const parsedItems = JSON.parse(localItems);
+            const updatedItems = parsedItems.map((item) =>
+            item.id === itemInfo.id ? { ...itemInfo, isBookmarked:false} : item
+            );
+            localStorage.setItem("items", JSON.stringify(updatedItems));
+        }
+        if (isBookmarked) {
+            saveBookmarkStateToLocalStorage("updatedItems");
+        } else {
+            removeBookmarkStateFromLocalStorage();
+        }
+    }, [isBookmarked, itemInfo]);
+
+    if(!itemInfo) return;
 
     return(
             <li className='card_box'>
             <div className='img_wrap'>
-                <img src={data.type === "Brand" ? data.brand_image_url : data.image_url} alt={data.title} className='card_img' />
-                <button className={bookMarkIcon ? 'icon_bookmark bookmark_on' :'icon_bookmark bookmark_off'}
-                onClick={(e) => {toggleBookmark(); saveBookmark(data)}}>    
+                <img src={itemInfo.type === "Brand" ? itemInfo.brand_image_url : itemInfo.image_url} alt={itemInfo.title} className='card_img' />
+                <button className={isBookmarked ? 'icon_bookmark bookmark_on' :'icon_bookmark bookmark_off'}
+                onClick={(e) => {toggleBookmark()}}>    
                 </button>
         </div>
             <div className='card_titles'>
-                <h3 className='card_title'>{data.title}</h3>
-                <h3 className='card_title'>{data.brand_name}</h3>
-                <span className='card_subtitle'>{data.discountPercentage}</span>
-                <span className='card_subtitle'>{data.type === "Brand" ? "관심고객수" : ""}</span>
+                <h3 className='card_title'>{itemInfo.title}</h3>
+                <h3 className='card_title'>{itemInfo.brand_name}</h3>
+                <span className='card_subtitle'>{itemInfo.discountPercentage}</span>
+                <span className='card_subtitle'>{itemInfo.type === "Brand" ? "관심고객수" : ""}</span>
             </div>
             <div className='card_details'>
-                <p className='card_detail_left'>{data.subtitle}</p>
-                <p className='card_detail_right'>{data.price}</p>
-                <p className='card_detail_right'>{data.follower}</p>
+                <p className='card_detail_left'>{itemInfo.subtitle}</p>
+                <p className='card_detail_right'>{itemInfo.price}</p>
+                <p className='card_detail_right'>{itemInfo.follower}</p>
             </div>
             </li>
     )
