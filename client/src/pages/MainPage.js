@@ -21,14 +21,8 @@ function MainPage() {
     const fetchData = async () => {
         const response = await axios.get(
         "http://cozshopping.codestates-seb.link/api/v1/products",
-        {
-            params: {
-            count: 4,
-            },
-        }
         );
         const data = await response.data;
-        console.log(data);
         return data;
     };
 

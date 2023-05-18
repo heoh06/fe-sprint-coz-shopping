@@ -1,8 +1,9 @@
 import React from 'react';
+import Category from '../components/Category';
 
 function BookmarkList(){
     return(
-        <div>북마크 리스트</div>
+        <Category/>
     )
 }
 

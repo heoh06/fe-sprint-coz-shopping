@@ -19,8 +19,8 @@ function Header () {
                 className={open? 'menu_list' : 'menu_list hide'}
                 >
                     <li>오하은님, 안녕하세요!</li>
-                    <Link to="/productlist"> <li>상품리스트 페이지</li></Link>
-                    <Link to="/bookmarklist"><li>북마크 페이지</li></Link> 
+                    <Link to="/product/list"> <li>상품리스트 페이지</li></Link>
+                    <Link to="/bookmark"><li>북마크 페이지</li></Link> 
                 </ul>
             </div>
         </nav>

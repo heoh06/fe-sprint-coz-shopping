@@ -15,8 +15,8 @@ function App() {
         <Header/>
         <Routes>
           <Route path="/" element={<MainPage/>} />
-          <Route path='/productlist' element={<ProductList/>}/>
-          <Route path='/bookmarklist' element={ <BookmarkList/>}/>
+          <Route path='/product/list' element={<ProductList/>}/>
+          <Route path='/bookmark' element={ <BookmarkList/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

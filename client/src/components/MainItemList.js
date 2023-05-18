@@ -6,7 +6,7 @@ function MainItemList({items}) {
 
 return (
 <ul className="cardlist_wrap">
-    {items.map((itemInfo) => (<Card itemInfo={itemInfo} key={itemInfo.id} />))}
+    {items.slice(0,4).map((itemInfo) => (<Card itemInfo={itemInfo} key={itemInfo.id} />))}
 </ul>
 );
 }
