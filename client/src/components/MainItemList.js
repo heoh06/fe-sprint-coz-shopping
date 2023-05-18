@@ -1,13 +1,14 @@
-import React from 'react';
-import Card from './Card'
+import React from "react";
+import Card from "./Card";
 
-function ItemList({data}){
+function MainItemList({items}) {
 
-    return(
-        <ul className='cardlist_wrap'>
-            {data.map(()=><Card data={data}/>)}
-        </ul>
-    )
+
+return (
+<ul className="cardlist_wrap">
+    {items.slice(0,4).map((itemInfo) => (<Card itemInfo={itemInfo} key={itemInfo.id} />))}
+</ul>
+);
 }
 
-export default ItemList;
+export default MainItemList;
