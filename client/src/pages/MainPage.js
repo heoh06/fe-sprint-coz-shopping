@@ -12,10 +12,19 @@ function MainPage() {
     function saveItemsDataToLocalStorage(items) {
     localStorage.setItem("items", JSON.stringify(items));
     }
+
+    function saveBookmarkDataToLocalStorage(items){
+        localStorage.setItem("updatedItems", JSON.stringify(items));
+    }
+
     function getItemsDataFromLocalStorage() {
     const items = localStorage.getItem("items");
     return JSON.parse(items);
     }
+    function getItemsBookmarkFromLocalStorage() {
+        const items = localStorage.getItem("updatedItems");
+        return JSON.parse(items);
+        }
 
     useEffect(() => {
     const fetchData = async () => {
@@ -28,21 +37,18 @@ function MainPage() {
 
     fetchData().then((result) => setData(result));
     }, []);
-
+    
     saveItemsDataToLocalStorage(data);
 
     useEffect(() => {
     const localItems = getItemsDataFromLocalStorage();
-    const bookmarkedItems = localItems.filter((item) => item.isBookmarked === true);
-    setBookmarkedItems(bookmarkedItems);
+    const bookmarkedItems = getItemsBookmarkFromLocalStorage();
     const unBookmarkedItems = localItems.filter(
         (item) => !item.isBookmarked || item.isBookmarked === undefined
     );
     setUnBookmarkedItems(unBookmarkedItems);
+    setBookmarkedItems(bookmarkedItems)
     }, [data]);
-    
-    const updateItems = localStorage.getItem("updatedItems")
-    const updateItemsParse = JSON.parse(updateItems);
 
     return (
         <>
@@ -52,7 +58,7 @@ function MainPage() {
         </section>
         <section className="main_section_bookmark">
             <h2>북마크 리스트</h2>
-            <MainBookmarkList items={updateItemsParse} />
+            <MainBookmarkList items={bookmarkedItems} />
         </section>
         </>
     );

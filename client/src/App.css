@@ -226,21 +226,35 @@ footer {
 
 /* Main Page*/
 section{
-  padding: 0 74px 0 74px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 .main_section_product{
   padding-top:104px;
 }
 
 h2{
+  width:1128px;
   font-weight: 600;
   font-size:24px;
   margin-bottom:12px;
 }
 
+h2:after{
+  content:"";
+  clear:both;
+  display:block;
+}
+
 .cardlist_wrap{
   display:flex;
-  justify-content: space-between;
+  justify-content:left;
+  width:1128px;
+}
+
+.cardlist_wrap li{
+  margin-right:24px;
 }
 
 /* category */
@@ -307,7 +321,5 @@ h2{
   display:flex;
   flex-direction:row;
   flex-wrap:wrap;
-  align-items:30px;
-  justify-content: 30px;
 }
 
